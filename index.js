@@ -14,7 +14,6 @@ const main = async () => {
 
   do {
     option = await inquirerMenu();
-    console.log({ option });
 
     switch (option) {
       case "1":
@@ -23,14 +22,22 @@ const main = async () => {
         break;
 
       case "2":
-        console.log(tasks.listTasks);
+        tasks.fullList();
+        break;
+
+      case "3":
+        tasks.listTaskByStatus();
+        break;
+
+      case "4":
+        tasks.listTaskByStatus(false);
         break;
     }
 
     saveDB(tasks.listTasks);
 
-    if (option !== "0") await pause();
-  } while (option !== "0");
+    if (option !== "7") await pause();
+  } while (option !== "7");
 };
 
 main();

@@ -27,6 +27,27 @@ class Tasks {
     const task = new Task(description);
     this._list[task.id] = task;
   }
+
+  fullList() {
+    this.listTasks.forEach((task, index) =>
+      console.log(
+        `${(index + 1 + '.').green} ${task.description} :: ${
+          task.completedOn !== null ? task.completedOn.green : "Pending".red
+        }`
+      )
+    );
+  }
+
+  listTaskByStatus(status = true) {
+    this.listTasks.forEach((task, index) =>{
+      const taskStatus = task.completedOn !== null ? true : false;
+      taskStatus === status && console.log(
+        `${(index + 1 + '.').green} ${task.description} :: ${
+          task.completedOn !== null ? task.completedOn.green : "Pending".red
+        }`
+      )}
+    );
+  }
 }
 
 export { Tasks };

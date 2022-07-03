@@ -42,7 +42,7 @@ const questions = [
 const inquirerMenu = async () => {
   console.clear();
   console.log("====================".green);
-  console.log("  Select an option  ".green);
+  console.log("  Select an option  ".white);
   console.log("====================\n".green);
 
   const { option } = await inquirer.prompt(questions);
@@ -69,7 +69,7 @@ const readInput = async (message) => {
       name: "description",
       message,
       validate(value) {
-        if (value.length === 0) return "Please enter a value".blue;
+        if (value.length === 0) return "Please enter a value".red;
         return true;
       },
     },

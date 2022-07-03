@@ -2,6 +2,17 @@ import { Task } from "./task.js";
 
 class Tasks {
   _list = {};
+
+  get listTasks() {
+    const listToArray = [];
+
+    Object.keys(this._list).forEach((key) => {
+        listToArray.push(this._list[key]);
+    });
+
+    return listToArray;
+  }
+
   constructor() {
     this._list = {};
   }
@@ -10,8 +21,6 @@ class Tasks {
     const task = new Task(description);
     this._list[task.id] = task;
   }
-
-  listTasks() {}
 }
 
 export { Tasks };

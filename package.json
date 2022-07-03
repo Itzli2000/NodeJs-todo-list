@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "Todo list made with NodeJs",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ariel Molina",
   "license": "MIT",
   "dependencies": {
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "inquirer": "^9.0.0"
   }
 }

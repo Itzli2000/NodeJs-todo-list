@@ -1,4 +1,4 @@
-require("colors");
+import colors from "colors";
 
 const showMenu = () => {
   return new Promise((resolve) => {
@@ -39,4 +39,4 @@ const pause = () => {
   });
 };
 
-module.exports = { showMenu, pause };
+export { showMenu, pause };

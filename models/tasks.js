@@ -7,7 +7,7 @@ class Tasks {
     const listToArray = [];
 
     Object.keys(this._list).forEach((key) => {
-        listToArray.push(this._list[key]);
+      listToArray.push(this._list[key]);
     });
 
     return listToArray;
@@ -15,6 +15,12 @@ class Tasks {
 
   constructor() {
     this._list = {};
+  }
+
+  loadTasksFromDB(data) {
+    const convertedData = {};
+    data.forEach((task) => (convertedData[task.id] = task));
+    this._list = convertedData;
   }
 
   createTask(description = "") {

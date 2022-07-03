@@ -110,4 +110,44 @@ const confirmTaskDeletion = async (id) => {
   return confirmDeletion;
 };
 
-export { inquirerMenu, pause, readInput, listOfTaskToDelete, confirmTaskDeletion };
+const listOfTaskToComplete = async (tasks = []) => {
+  const choices = tasks.map((task, index) => {
+    return {
+      value: task.id,
+      name: `${(index + 1 + ".").green} ${task.description}`,
+      checked: task.completedOn,
+    };
+  });
+  const tasksList = [
+    {
+      type: "checkbox",
+      name: "completeOption",
+      message: "Which tasks would you like to complete?",
+      choices,
+    },
+  ];
+  const { completeOption } = await inquirer.prompt(tasksList);
+  return completeOption;
+};
+
+const confirmTaskComplete = async () => {
+  const tasksList = [
+    {
+      type: "confirm",
+      name: "confirmDeletion",
+      message: "Are you sure you want to complete the selected tasks?",
+    },
+  ];
+  const { confirmDeletion } = await inquirer.prompt(tasksList);
+  return confirmDeletion;
+};
+
+export {
+  inquirerMenu,
+  pause,
+  readInput,
+  listOfTaskToDelete,
+  confirmTaskDeletion,
+  listOfTaskToComplete,
+  confirmTaskComplete,
+};

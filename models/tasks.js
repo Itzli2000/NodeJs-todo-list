@@ -61,6 +61,17 @@ class Tasks {
         );
     });
   }
+
+  completeTasks(list) {
+    list.forEach((id) =>
+      this._list[id].completedOn === null
+        ? (this._list[id].completedOn = new Date().toLocaleString())
+        : null
+    );
+    this.listTasks.forEach((task) => {
+      if (!list.includes(task.id)) this._list[task.id].completedOn = null;
+    });
+  }
 }
 
 export { Tasks };

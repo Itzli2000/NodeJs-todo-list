@@ -6,6 +6,8 @@ import {
   readInput,
   listOfTaskToDelete,
   confirmTaskDeletion,
+  listOfTaskToComplete,
+  confirmTaskComplete,
 } from "./helper/inquirer.js";
 import { saveDB, retrieveDB } from "./helper/saveFile.js";
 import { Tasks } from "./models/tasks.js";
@@ -39,9 +41,11 @@ const main = async () => {
         tasks.listTaskByStatus(false);
         break;
 
-      // case "5":
-      //   tasks.listTaskByStatus(false);
-      //   break;
+      case "5":
+        const toComplete = await listOfTaskToComplete(tasks.listTasks);
+        const confirm = await confirmTaskComplete();
+        if (confirm) tasks.completeTasks(toComplete);
+        break;
 
       case "6":
         const id = await listOfTaskToDelete(tasks.listTasks);

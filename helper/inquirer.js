@@ -9,31 +9,31 @@ const questions = [
     choices: [
       {
         value: "1",
-        name: "1. Create task",
+        name: `${"1.".green} Create task`,
       },
       {
         value: "2",
-        name: "2. List tasks",
+        name: `${"2.".green} List tasks`,
       },
       {
         value: "3",
-        name: "3. list completed tasks",
+        name: `${"3.".green} list completed tasks`,
       },
       {
         value: "4",
-        name: "4. List pending tasks",
+        name: `${"4.".green} List pending tasks`,
       },
       {
         value: "5",
-        name: "5. Complete task",
+        name: `${"5.".green} Complete task`,
       },
       {
         value: "6",
-        name: "6. Delete task",
+        name: `${"6.".green} Delete task`,
       },
       {
         value: "0",
-        name: "0. Exit\n",
+        name: `${"0.".green} Exit\n`,
       },
     ],
   },
@@ -58,8 +58,25 @@ const pause = async () => {
       message: `Press ${"Enter".green} to continue`,
     },
   ];
-  console.log('\n')
+  console.log("\n");
   await inquirer.prompt(question);
 };
 
-export { inquirerMenu, pause };
+const readInput = async (message) => {
+  const question = [
+    {
+      type: "input",
+      name: "description",
+      message,
+      validate(value) {
+        if (value.length === 0) return "Please enter a value".blue;
+        return true;
+      },
+    },
+  ];
+  console.log("\n");
+  const { description } = await inquirer.prompt(question);
+  return description;
+};
+
+export { inquirerMenu, pause, readInput };

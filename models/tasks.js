@@ -17,6 +17,18 @@ class Tasks {
     this._list = {};
   }
 
+  getTaskByID(taskID) {
+    const task = this._list[taskID];
+    return task;
+  }
+
+  deleteTask(id) {
+    if (this._list[id]) {
+      console.log(`Task ${this._list[id].description} deleted`);
+      delete this._list[id];
+    }
+  }
+
   loadTasksFromDB(data) {
     const convertedData = {};
     data.forEach((task) => (convertedData[task.id] = task));
@@ -31,7 +43,7 @@ class Tasks {
   fullList() {
     this.listTasks.forEach((task, index) =>
       console.log(
-        `${(index + 1 + '.').green} ${task.description} :: ${
+        `${(index + 1 + ".").green} ${task.description} :: ${
           task.completedOn !== null ? task.completedOn.green : "Pending".red
         }`
       )
@@ -39,14 +51,15 @@ class Tasks {
   }
 
   listTaskByStatus(status = true) {
-    this.listTasks.forEach((task, index) =>{
+    this.listTasks.forEach((task, index) => {
       const taskStatus = task.completedOn !== null ? true : false;
-      taskStatus === status && console.log(
-        `${(index + 1 + '.').green} ${task.description} :: ${
-          task.completedOn !== null ? task.completedOn.green : "Pending".red
-        }`
-      )}
-    );
+      taskStatus === status &&
+        console.log(
+          `${(index + 1 + ".").green} ${task.description} :: ${
+            task.completedOn !== null ? task.completedOn.green : "Pending".red
+          }`
+        );
+    });
   }
 }
 

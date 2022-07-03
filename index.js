@@ -1,6 +1,12 @@
 // import { showMenu, pause } from "./helper/messages.js";
 import colors from "colors";
-import { inquirerMenu, pause, readInput } from "./helper/inquirer.js";
+import {
+  inquirerMenu,
+  pause,
+  readInput,
+  listOfTaskToDelete,
+  confirmTaskDeletion,
+} from "./helper/inquirer.js";
 import { saveDB, retrieveDB } from "./helper/saveFile.js";
 import { Tasks } from "./models/tasks.js";
 
@@ -31,6 +37,17 @@ const main = async () => {
 
       case "4":
         tasks.listTaskByStatus(false);
+        break;
+
+      // case "5":
+      //   tasks.listTaskByStatus(false);
+      //   break;
+
+      case "6":
+        const id = await listOfTaskToDelete(tasks.listTasks);
+        const task = tasks.getTaskByID(id);
+        const confirmation = await confirmTaskDeletion(task.description);
+        if (confirmation) tasks.deleteTask(id);
         break;
     }
 
